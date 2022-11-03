@@ -1,0 +1,52 @@
+@page
+@model MegaDeskWebPage.Pages.Quotes.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Quote</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Quote.CustomerName" class="control-label"></label>
+                <input asp-for="Quote.CustomerName" class="form-control" />
+                <span asp-validation-for="Quote.CustomerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.Price" class="control-label"></label>
+                <input asp-for="Quote.Price" class="form-control" />
+                <span asp-validation-for="Quote.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.QuoteDate" class="control-label"></label>
+                <input asp-for="Quote.QuoteDate" class="form-control" />
+                <span asp-validation-for="Quote.QuoteDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.DeskId" class="control-label"></label>
+                <select asp-for="Quote.DeskId" class ="form-control" asp-items="ViewBag.DeskId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.DeliveryOptionId" class="control-label"></label>
+                <select asp-for="Quote.DeliveryOptionId" class ="form-control" asp-items="ViewBag.DeliveryOptionId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -20,7 +20,7 @@ namespace MegaDeskWebPage.Models
         [ForeignKey("DeskId")]
         public Desk Desk { get; set; }
 
-        [ForeignKey("DeliveryOption")]
+        [ForeignKey("DeliveryOptionId")]
         public DeliveryOption DeliveryOption { get; set; }
     }
 }
