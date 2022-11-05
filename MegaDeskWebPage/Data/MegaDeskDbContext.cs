@@ -1,5 +1,6 @@
 ﻿using MegaDeskWebPage.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 namespace MegaDeskWebPage.Data
 {
@@ -14,5 +15,15 @@ namespace MegaDeskWebPage.Data
         public DbSet<Desk> Desk { get; set; } = default!;
         public DbSet<DeskMaterial> DeskMaterial { get; set; } = default!;
         public DbSet<Quote> Quote { get; set; } = default!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DeliveryOption>()
+                .Property(d => d.ShippingTime)
+                .HasConversion<long>();
+            modelBuilder.Entity<DeliveryOption>()
+                .HasData(
+                new { Id = 1, DeliveryType = "Three Day", Cost = });
+        }
     }
 }

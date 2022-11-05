@@ -15,7 +15,7 @@ namespace MegaDeskWebPage.Models
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Cost { get; set; }
 
-        [Display(Name = "Delivery Date"), DataType(DataType.Date)]
-        public DateTime DeliveryDate { get; set; }
+        [Display(Name = "Shipping Time")]
+        public TimeSpan ShippingTime { get; set; }
     }
 }
