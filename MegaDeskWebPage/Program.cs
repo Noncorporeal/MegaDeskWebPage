@@ -1,12 +1,14 @@
-﻿using MegaDeskWebPage.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MegaDeskWebPage.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<MegaDeskDbContext>
-
+builder.Services.AddDbContext<MegaDeskDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("MegaDeskDbContext") ?? throw new InvalidOperationException("Connection string 'MegaDeskthign' not found.")));
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
