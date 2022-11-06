@@ -16,6 +16,7 @@ namespace MegaDeskWebPage.Models
             ErrorMessage = "Desk width must be between {1} and {2}")]
         public decimal Width { get; set; }
 
+        [Display(Name = "Number of Drawers")]
         [Range(0, 7, 
             ErrorMessage = "Number of drawers must be between {1} and {2}")]
         public int NumberOfDrawers { get; set; }

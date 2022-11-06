@@ -19,22 +19,27 @@
                 <span asp-validation-for="Quote.CustomerName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quote.Price" class="control-label"></label>
-                <input asp-for="Quote.Price" class="form-control" />
-                <span asp-validation-for="Quote.Price" class="text-danger"></span>
+                <label asp-for="Quote.DeliveryOption.DeliveryType" class="control-label"></label>
+                <select asp-for="Quote.DeliveryOption.DeliveryType" class="form-control" asp-items="ViewBag.DeliveryOption"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Quote.QuoteDate" class="control-label"></label>
-                <input asp-for="Quote.QuoteDate" class="form-control" />
-                <span asp-validation-for="Quote.QuoteDate" class="text-danger"></span>
+                <label asp-for="Quote.Desk.NumberOfDrawers" class="control-label"></label>
+                <input asp-for="Quote.Desk.NumberOfDrawers" class="form-control">
+                <span asp-validation-for="Quote.Desk.NumberOfDrawers" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quote.DeskId" class="control-label"></label>
-                <select asp-for="Quote.DeskId" class ="form-control" asp-items="ViewBag.DeskId"></select>
+                <label asp-for="Quote.Desk.Depth" class="control-label"></label>
+                <input asp-for="Quote.Desk.Depth" class="form-control">
+                <span asp-validation-for="Quote.Desk.Depth" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quote.DeliveryOptionId" class="control-label"></label>
-                <select asp-for="Quote.DeliveryOptionId" class ="form-control" asp-items="ViewBag.DeliveryOptionId"></select>
+                <label asp-for="Quote.Desk.Width" class="control-label"></label>
+                <input asp-for="Quote.Desk.Width" class="form-control">
+                <span asp-validation-for="Quote.Desk.Width" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.Desk.DeskMaterial.MaterialName" class="control-label"></label>
+                <select asp-for="Quote.Desk.DeskMaterial.MaterialName" class="form-control" asp-items="ViewBag.DeskMaterial"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

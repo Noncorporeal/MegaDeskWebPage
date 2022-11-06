@@ -12,22 +12,35 @@ namespace MegaDeskWebPage.Pages.Quotes
 {
     public class IndexModel : PageModel
     {
-        private readonly MegaDeskWebPage.Data.MegaDeskDbContext _context;
+        private readonly MegaDeskDbContext _context;
 
-        public IndexModel(MegaDeskWebPage.Data.MegaDeskDbContext context)
+        public IndexModel(MegaDeskDbContext context)
         {
             _context = context;
         }
 
         public IList<Quote> Quote { get;set; } = default!;
 
+        [BindProperty(SupportsGet = true)]
+        public string? SearchName { get; set; }
+
         public async Task OnGetAsync()
         {
             if (_context.Quote != null)
             {
-                Quote = await _context.Quote
-                .Include(q => q.DeliveryOption)
-                .Include(q => q.Desk).ToListAsync();
+                Quote = (from q in _context.Quote
+                         select q)
+                         .Include(a => a.Desk)
+                            .ThenInclude(c => c.DeskMaterial)
+                         .Include(a => a.DeliveryOption)
+                         .ToList();
+
+                if (!string.IsNullOrEmpty(SearchName))
+                {
+                    Quote = (from q in Quote
+                             where q.CustomerName == SearchName
+                             select q).ToList();
+                }
             }
         }
     }

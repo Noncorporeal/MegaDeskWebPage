@@ -17,5 +17,7 @@ namespace MegaDeskWebPage.Models
 
         [Display(Name = "Shipping Time")]
         public TimeSpan ShippingTime { get; set; }
+
+        public int MinSize { get; set; }
     }
 }

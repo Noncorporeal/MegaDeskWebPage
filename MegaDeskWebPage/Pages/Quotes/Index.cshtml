@@ -11,6 +11,14 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+<form>
+    <p>
+        Customer Name: <input type="text" asp-for="SearchName" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -24,38 +32,57 @@
                 @Html.DisplayNameFor(model => model.Quote[0].QuoteDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quote[0].Desk)
+                @Html.DisplayNameFor(model => model.Quote[0].DeliveryOption.DeliveryType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quote[0].DeliveryOption)
+                @Html.DisplayNameFor(model => model.Quote[0].Desk.NumberOfDrawers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Desk.Depth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Desk.Width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].Desk.DeskMaterial.MaterialName)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Quote) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuoteDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Desk.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryOption.Id)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Quote)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuoteDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryOption.DeliveryType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Desk.NumberOfDrawers)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Desk.Depth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Desk.Width)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Desk.DeskMaterial.MaterialName)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
