@@ -3,6 +3,7 @@ using System;
 using MegaDeskWebPage.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MegaDeskWebPage.Migrations
 {
     [DbContext(typeof(MegaDeskDbContext))]
-    partial class MegaDeskDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221106003749_NewStaticValues")]
+    partial class NewStaticValues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");

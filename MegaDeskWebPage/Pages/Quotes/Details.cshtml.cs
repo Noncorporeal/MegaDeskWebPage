@@ -28,7 +28,11 @@ namespace MegaDeskWebPage.Pages.Quotes
                 return NotFound();
             }
 
-            var quote = await _context.Quote.FirstOrDefaultAsync(m => m.Id == id);
+            var quote = await _context.Quote
+                .Include(q => q.Desk)
+                    .ThenInclude(d => d.DeskMaterial)
+                .Include(q => q.DeliveryOption)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (quote == null)
             {
                 return NotFound();

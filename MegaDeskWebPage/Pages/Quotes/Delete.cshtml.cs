@@ -29,7 +29,11 @@ namespace MegaDeskWebPage.Pages.Quotes
                 return NotFound();
             }
 
-            var quote = await _context.Quote.FirstOrDefaultAsync(m => m.Id == id);
+            var quote = await _context.Quote
+                .Include(q => q.Desk)
+                    .ThenInclude(d => d.DeskMaterial)
+                .Include(q => q.DeliveryOption)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (quote == null)
             {
@@ -49,11 +53,13 @@ namespace MegaDeskWebPage.Pages.Quotes
                 return NotFound();
             }
             var quote = await _context.Quote.FindAsync(id);
+            Desk desk = await _context.Desk.FindAsync(quote.DeskId);
 
             if (quote != null)
             {
                 Quote = quote;
                 _context.Quote.Remove(Quote);
+                _context.Desk.Remove(desk);
                 await _context.SaveChangesAsync();
             }
 
